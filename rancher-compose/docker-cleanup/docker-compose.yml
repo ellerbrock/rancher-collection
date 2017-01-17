@@ -1,0 +1,19 @@
+version: '2'
+services:
+  docker-cleanup:
+    image: meltwater/docker-cleanup
+    environment:
+      CLEAN_PERIOD: 600
+      DELAY_TIME: 0
+      KEEP_IMAGES: 'rancher/,ellerbrock/'
+      KEEP_CONTAINERS: '*:*'
+      KEEP_CONTAINERS_NAMED: '**None**'
+      LOOP: 'false'
+      DEBUG: 0
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/lib/docker:/var/lib/docker
+    labels:
+      io.rancher.container.start_once: 'true'
+      com.socialengine.rancher-cron.schedule: '@every 6h'
+
