@@ -1,7 +1,7 @@
 version: '2'
 services:
   rancher-cron:
-    image: socialengine/rancher-cron
+    image: ellerbrock/alpine-rancher-cron
     labels:
       io.rancher.container.create_agent: 'true'
       io.rancher.container.agent.role: environment
