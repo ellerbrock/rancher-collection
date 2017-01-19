@@ -2,12 +2,13 @@ version: '2'
 services:
   cloudflare-dyndns:
     image: ellerbrock/alpine-cloudflare-dyndns
+    labels:
+      io.rancher.container.pull_image: always
+      io.rancher.container.start_once: 'true'
+      com.socialengine.rancher-cron.schedule: '@every 5m'
     environment:
         CF_EMAIL: 
         CF_TOKEN: 
         CF_ZONE_NAME: 
-        CF_DOMAIN_NAME: 
-    labels:
-      io.rancher.container.start_once: 'true'
-      com.socialengine.rancher-cron.schedule: '@every 5m'
+        CF_DOMAIN_NAME:
 

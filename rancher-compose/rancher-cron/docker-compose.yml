@@ -3,5 +3,7 @@ services:
   rancher-cron:
     image: ellerbrock/alpine-rancher-cron
     labels:
+      io.rancher.container.pull_image: always
       io.rancher.container.create_agent: 'true'
       io.rancher.container.agent.role: environment
+

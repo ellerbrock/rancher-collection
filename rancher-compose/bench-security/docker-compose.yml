@@ -1,0 +1,15 @@
+rancher-bench-security:
+  image: ellerbrock/alpine-bench-security
+  labels:
+    io.rancher.container.pull_image: always
+    io.rancher.container.start_once: 'true'
+  net: host
+  pid: host
+  stdin_open: true
+  tty: true
+  volumes:
+    - /var/lib:/var/lib
+    - /var/run/docker.sock:/var/run/docker.sock
+    - /usr/lib/systemd:/usr/lib/systemd
+    - /etc:/etc
+
