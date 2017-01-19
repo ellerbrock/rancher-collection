@@ -1,5 +1,6 @@
 version: '2'
 services:
-  rancher-cron:
+  bench-security:
     scale: 1
     start_on_create: true
+
