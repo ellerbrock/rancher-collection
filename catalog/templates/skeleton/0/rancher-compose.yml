@@ -1,0 +1,21 @@
+version: '2'
+catalog:
+  name: skeleton
+  version: v.0.0.1
+  description: desc
+  questions:
+    - variable: VAR1
+      label: VAR1
+      description: desc
+      default: str
+      required: true
+      type: string
+      # available types:
+      # - string
+      # - int
+      # - boolean
+      # - password
+      # - service
+      # - enum
+      # - multiline
+      # - certificate

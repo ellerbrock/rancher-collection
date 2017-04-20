@@ -1,0 +1,11 @@
+version: '2'
+catalog:
+  name: bench-security
+  version: v.0.0.1
+  description: Docker Bench Security
+
+services:
+  bench-security:
+    scale: 1
+    start_on_create: true
+

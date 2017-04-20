@@ -1,0 +1,24 @@
+version: '2'
+catalog:
+  name: cloudflare-dyndns
+  version: v.0.0.1
+  description: Cloudflare Dynamic DNS Updater
+  questions:
+    - variable: CF_EMAIL
+      label: Cloudflare Email
+      required: true
+      type: string
+    - variable: CF_TOKEN
+      label: API Token
+      required: true
+      type: string
+    - variable: CF_ZONE_NAME
+      label: Domain
+      required: true
+      type: string
+    - variable: CF_DOMAIN_NAME
+      label: Subdomain
+      description: Domain / Subdomain you want to update
+      required: true
+      type: string
+

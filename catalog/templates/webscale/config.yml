@@ -1,0 +1,9 @@
+name: webscale
+description: |
+  Test Webapp to test scaling and updating.
+version: v.0.0.1
+category: scale
+maintainer: Maik Ellerbrock
+license: MIT
+projectURL: https://github.com/ellerbrock
+

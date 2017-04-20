@@ -1,0 +1,43 @@
+version: '2'
+
+catalog:
+  name: webscale
+  version: 0.0.1
+  description: Web App (Scale Test)
+  questions:
+    - variable: APP_SCALE
+      label: Scale
+      description: Define how many Container to start with.
+      default: 10
+      required: true
+      type: int
+    - variable: PORT
+      label: Port
+      default: 4000
+      required: true
+      type: int
+
+services:
+  webapp:
+    scale: ${APP_SCALE}
+    start_on_create: true
+    upgrade_strategy:
+      batch-size: 2
+  haproxy:
+    scale: 1
+    start_on_create: true
+    lb_config:
+      port_rules:
+      - path: /
+        priority: 1
+        protocol: http
+        service: webapp
+        source_port: ${PORT}
+        target_port: 80
+        health_check:
+      response_timeout: 2000
+      healthy_threshold: 2
+      port: 42
+      unhealthy_threshold: 3
+      interval: 2000
+

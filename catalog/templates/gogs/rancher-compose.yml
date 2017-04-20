@@ -1,0 +1,38 @@
+version: '2'
+
+catalog:
+  name: gogd
+  version: 1
+  description: Git Server
+  questions:
+    - variable: HTTP_PORT
+      label: HTTP Port
+      description: Public exposed HTTP Port
+      default: 4000
+      required: true
+      type: int
+    - variable: SSH_PORT
+      label: SSH Port
+      default: 2222
+      required: true
+      type: int
+    - variable: SSH_PORT
+      label: SSH Port
+      default: 2222
+      required: true
+      type: int
+    - variable: MYSQL_ROOT_PASSWORD
+      label: MySQL root password
+      required: true
+      type: password
+
+services:
+
+  gogs:
+    scale: 1
+    start_on_create: true
+
+  mysql:
+    scale: 1
+    start_on_create: true
+

@@ -1,0 +1,6 @@
+name: docker-registry
+description: |
+  Private Docker Registry
+version: v.0.0.1
+maintainer: Maik Ellerbrock
+

@@ -1,0 +1,13 @@
+version: '2'
+catalog:
+  name: docker-registry
+  version: v.0.0.1
+  description: Docker Registry
+  questions:
+    - variable: PORT
+      label: Port
+      description: Public exposed Port for the Docker Registry.
+      default: 5000
+      required: true
+      type: int
+

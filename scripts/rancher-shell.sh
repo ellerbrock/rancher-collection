@@ -29,7 +29,7 @@ RANCHER_BACKUP_DIR="/home/rancher/backup/rancher"
 alias ls="ls --color=auto"
 alias l="ls -alF"
 alias ..="cd .."
-
+alias top="htop"
 
 #
 # proxy settings
@@ -44,11 +44,6 @@ alias ..="cd .."
 #
 # functions
 #
-
-
-function docker-clean-unnamed-container() {
-  docker rmi --force $(docker images -a | grep "^<none>" | awk '{print $3}')
-}
 
 
 function installRancher() {
@@ -139,6 +134,16 @@ function proxySetup() {
    # docker proxy settings
    echo 'export http_proxy="'${http_proxy}'"' > /etc/default/docker
  fi
+}
+
+function docker-clean-unnamed-container() {
+  docker rmi --force $(docker images -a | grep "^<none>" | awk '{print $3}')
+}
+
+
+function container_update() {
+  echo updating containers ...
+  docker images | grep -v "REPOSITORY" | awk '{print $1":"$2}' | xargs -L1 docker pull
 }
 
 

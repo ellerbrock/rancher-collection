@@ -1,0 +1,15 @@
+version: '2'
+services:
+  skeleton:
+    image: ellerbrock/bash-it
+    container_name: skeleton
+    command: -c "echo hello world"
+    labels:
+      com.frapsoft.container.tag: 'frapcloud'
+      io.rancher.container.pull_image: always
+      io.rancher.container.start_once: 'true'
+      com.socialengine.rancher-cron.schedule: '@every 5m'
+    environment:
+      VERSION: 0.0.1
+      VAR1: ${VAR1}
+

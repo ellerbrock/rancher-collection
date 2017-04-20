@@ -1,0 +1,9 @@
+name: bench-security
+description: |
+  Docker Bench Security Scanner
+version: v.0.0.1
+category: security
+maintainer: Maik Ellerbrock
+license: MIT
+projectURL: https://github.com/ellerbrock
+

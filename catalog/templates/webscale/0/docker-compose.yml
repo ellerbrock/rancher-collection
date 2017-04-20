@@ -1,0 +1,16 @@
+version: '2'
+services:
+  webapp:
+    image: ellerbrock/get-ip:v1
+    stdin_open: true
+    tty: true
+    labels:
+      io.rancher.container.pull_image: always
+      com.frapsoft.container.tag: 'frapcloud'
+  haproxy:
+    image: rancher/lb-service-haproxy:v0.4.9
+    ports:
+      - ${PORT}:${PORT}
+    labels:
+      io.rancher.container.agent.role: environmentAdmin
+      io.rancher.container.create_agent: 'true'

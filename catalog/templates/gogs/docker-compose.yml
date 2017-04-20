@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+
+  gogs:
+    image: gogs/gogs:latest
+    depends_on:
+      - mysql
+    volumes:
+      - gogs-data:/data
+    ports:
+    - ${HTTP_PORT}:3000/tcp
+    - ${SSH_PORT}:22/tcp
+
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_DATABASE: gogs
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    volumes:
+      - gogs-mysql:/var/lib/mysql
+
