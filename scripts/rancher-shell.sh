@@ -45,14 +45,6 @@ alias ..="cd .."
 # functions
 #
 
-function docker-clean-all() {
-  docker stop $(docker ps -a -q)
-  docker rm -f $(docker ps -a -q)
-  docker rmi -f $(docker images -q)
-  docker volume rm $(docker volume ls -q)
-  docker network rm $(docker network ls -q)
-}
-
 
 function docker-clean-unnamed-container() {
   docker rmi --force $(docker images -a | grep "^<none>" | awk '{print $3}')
@@ -110,7 +102,13 @@ function backupRancherMySQL() {
 function installApps() {
   apt-get update -y
   apt-get upgrade -y
-  apt-get install -y bzip2 git vim
+  apt-get install -y bzip2 git vim linux-generic htop
+  # bsdmainutils
+
+  # install docker-clean
+  curl -s https://raw.githubusercontent.com/ZZROTDesign/docker-clean/master/docker-clean \
+    | sudo tee /usr/local/bin/docker-clean > /dev/null && \
+    sudo chmod +x /usr/local/bin/docker-clean
 }
 
 
@@ -145,10 +143,10 @@ function proxySetup() {
 
 
 function installRoot() {
-  # uncomment next line if you use a proxy
-  # proxySetup
   installApps
   shellSetup
+  # uncomment next line if you use a proxy
+  # proxySetup
 }
 
 function installUser(){
