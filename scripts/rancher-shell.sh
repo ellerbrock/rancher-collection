@@ -15,6 +15,20 @@
 
 
 #
+# Configruation
+#
+
+# RANCHER_IP=
+
+# proxy settings
+
+# export http_proxy="http://your-proxy:8880"
+# export https_proxy="${http_proxy}"
+# export ftp_proxy="${http_proxy}"
+# export no_proxy="localhost,127.0.0.1"
+
+
+#
 # variables
 #
 
@@ -30,15 +44,6 @@ alias ls="ls --color=auto"
 alias l="ls -alF"
 alias ..="cd .."
 alias top="htop"
-
-#
-# proxy settings
-#
-
-# export http_proxy="http://your-proxy:8880"
-# export https_proxy="${http_proxy}"
-# export ftp_proxy="${http_proxy}"
-# export no_proxy="localhost,127.0.0.1"
 
 
 #
@@ -56,6 +61,28 @@ function installRancher() {
     -p 8080:8080 \
   rancher/server:latest
 }
+
+function installRancherHA() {
+  if [[ -z "${RANCHER_IP}" ]]; then
+    echo "proxy variables not set!"
+    exit 1
+  else
+    # persist the mysql database to a docker volume
+    docker volume create --name rancher-mysql
+
+    docker run -d \
+      --restart=unless-stopped \
+      -v rancher-mysql:/var/lib/mysql \
+      -p 500:500/udp \
+      -p 4500:4500/udp \
+      -p 3306:3306 \
+      -p 8080:8080 \
+      -p 9345:9345 \
+    rancher/server:stable \
+      --advertise-address ${RANCHER_IP}
+  fi
+}
+
 
 
 function installRancherProxy() {
