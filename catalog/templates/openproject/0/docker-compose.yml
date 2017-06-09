@@ -2,22 +2,24 @@ version: '2'
 
 services:
 
-  bitbucket:
-    image: atlassian/bitbucket-server:5.1
+  openproject:
+    image: openproject/community:7
     volumes_from:
-      - bitbucket-data
+      - openproject-data
     ports:
-      - ${BITBUCKET_PORT}:7990
+      - ${OPENPROJECT_PORT}:80
     labels:
-      io.rancher.sidekicks: bitbucket-data
+      io.rancher.sidekicks: openproject-data
       io.rancher.container.hostname_override: container_name
 
-  bitbucket-data:
-    image: atlassian/bitbucket-server:5.1
+  openproject-data:
+    image: openproject/community:7
     entrypoint:
       - /bin/true
     volumes:
-      - /var/atlassian/application-data/bitbucket
+      - /var/lib/postgresql/9.4/main
+      - /var/log/supervisor
+      - /var/db/openproject
     labels:
       io.rancher.container.start_once: 'true'
       io.rancher.container.hostname_override: container_name

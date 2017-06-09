@@ -124,10 +124,18 @@ function backupRancherMySQL() {
 
 
 function installApps() {
-  apt-get update -y
-  apt-get upgrade -y
-  apt-get install -y bzip2 git vim linux-generic htop
-  # bsdmainutils
+  apt-get update -y && \
+  apt-get upgrade -y && \
+  apt-get install -y \
+    bzip2 \
+    git \
+    vim \
+    linux-generic \
+    htop
+    # dnsutils \
+    # dosfstools \
+    # iputils-ping \
+    # bsdmainutils
 
   # install docker-clean
   curl -s https://raw.githubusercontent.com/ZZROTDesign/docker-clean/master/docker-clean \
