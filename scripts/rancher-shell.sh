@@ -73,14 +73,16 @@ function installRancherHA() {
     docker run -d \
       --restart=unless-stopped \
       -v rancher-mysql:/var/lib/mysql \
-      -p 500:500/udp \
-      -p 4500:4500/udp \
       -p 3306:3306 \
       -p 8080:8080 \
       -p 9345:9345 \
     rancher/server:stable \
       --advertise-address ${RANCHER_IP}
   fi
+
+  #    -p 500:500/udp \
+  #    -p 4500:4500/udp \
+
 }
 
 
